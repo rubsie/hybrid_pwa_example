@@ -5,19 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PWA example</title>
     <script src="js/index.js" defer></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
 
-<div><h1>My Pokemon</h1></div>
-<div><h2>versie 1.3.0</h2></div>
-<h2>Service worker en cache</h2>
-<p>Dit is de eerste versie - zo simpel mogelijk.</p>
-<p>Er wordt een Service Worker geregistreerd. </p>
-<p>Bij het <strong>registreren</strong>: de Service Worker cacht alle resources voor deze website (de AppShell). </p>
-<p>Bij het <strong>activeren</strong>: de Service Worker delete de caches voor alle oude versies. </p>
-<p><strong>Na</strong> het activeren: de Service Worker intercept alle fetches en haalt de resources uit de cache ipv
-    aan de server te vragen. </p>
-<p>Check dit in Chrome Dev Tools. </p>
+<div class="container-fluid">
+    <div class="row justify-content-end">
+        <h1 class="col mt-2">My Pokemon</h1>
+    </div>
+
+    <div id="alert_div" class="row" style="height: 2em"></div>
+
+    <div class="row">
+        <h2>versie 1.4.0</h2>
+    </div>
+
+    <div class="row">
+        <div class="col mt-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center p-1 mb-3 ">
+                    <h2 class="card-title"><span id="pokemon_id">102</span>. <span id="pokemon_name">Chansey</span></h2>
+                    <p class="card-text">Type: <span id="pokemon_type">psychic</span></p>
+                    <div class="card-img p-0 p-sm-2 p-md-2 w-75 m-auto">
+                        <img id="pokemon_img" src="images/113.png" class="w-75 h-auto" alt="a picture">
+                    </div>
+
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <button class='btn btn-primary w-100'
+                            onclick="showNextPokemon()">next image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
