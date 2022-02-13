@@ -1,4 +1,4 @@
-const version = "1.2.0";
+const version = "1.3.0";
 const cacheName = `pokemon-store-${version}`;
 
 console.log(`@@@@ run service_worker.js ${version}`);
@@ -13,6 +13,7 @@ self.addEventListener('install', (e) => {
             '.',
             'index.html',
             'js/index.js',
+            'manifest.webmanifest',
         ]);
     }
 

@@ -1,0 +1,16 @@
+{
+  "name": "Pokemon pictures",
+  "id": ".",
+  "short_name": "Pokemon",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "pink",
+  "description": "Shows random pokemon pictures. Hey, at least it isn't cats.",
+  "icons": [
+    {
+      "src": "icon/113.png",
+      "sizes": "475x475",
+      "type": "image/png"
+    }
+  ]
+}
