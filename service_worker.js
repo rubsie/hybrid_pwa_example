@@ -1,4 +1,4 @@
-const version = "1.1.0";
+const version = "1.2.0";
 const cacheName = `pokemon-store-${version}`;
 
 console.log(`@@@@ run service_worker.js ${version}`);
