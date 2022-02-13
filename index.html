@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PWA example</title>
+    <script src="js/index.js" defer></script>
+</head>
+<body>
+
+<div><h1>My Pokemon</h1></div>
+<div><h2>versie 1.1.0</h2></div>
+<h2>Service worker en cache</h2>
+<p>Dit is de eerste versie - zo simpel mogelijk.</p>
+<p>Er wordt een Service Worker geregistreerd. </p>
+<p>Bij het <strong>registreren</strong>: de Service Worker cacht alle resources voor deze website (de AppShell). </p>
+<p>Bij het <strong>activeren</strong>: de Service Worker delete de caches voor alle oude versies. </p>
+<p><strong>Na</strong> het activeren: de Service Worker intercept alle fetches en haalt de resources uit de cache ipv
+    aan de server te vragen. </p>
+<p>Check dit in Chrome Dev Tools. </p>
+</body>
+</html>
