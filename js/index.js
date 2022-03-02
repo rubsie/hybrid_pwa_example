@@ -32,14 +32,30 @@ async function clearCache() {
     keys.map(key => caches.delete(key))
 }
 
+let serviceWorkerRegistration;
+
+async function requestVersionFromServiceWorker() {
+    console.log("requesting version from service worker")
+    serviceWorkerRegistration.active?.postMessage({command: "REQUEST_VERSION"})
+}
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+    console.log('@@@ version: ' + event.data.payload)
+    if (event.data.command == "RESPONSE_VERSION") {
+        document.getElementById('serviceWorkerVersion').innerText = event.data.payload
+    } else console.log('@@@ Wrong message')
+})
+
 // Register service worker to control making site work offline
 async function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         console.log("start registering Service Worker");
-        const serviceWorkerRegistration = await navigator.serviceWorker.register('service_worker.js');
+        serviceWorkerRegistration = await navigator.serviceWorker.register('service_worker.js');
         console.log('registration Service Worker done');
+        await requestVersionFromServiceWorker();
     } else {
         console.log("geen Service Worker mogelijk in deze browser");
     }
 }
+
 registerServiceWorker();

@@ -1,4 +1,4 @@
-const version = "1.6.2";
+const version = "1.7.1";
 const cacheName = `pokemon-store-${version}`;
 
 console.log(`@@@@ run service_worker.js ${version}`);
@@ -25,6 +25,15 @@ async function initializeCache() {
         'images/862.png',
     ]);
 }
+
+self.addEventListener('message', (event) => {
+    console.log("#### event.data:")
+    console.log(event.data.command)
+    if (event.data.command == "REQUEST_VERSION"){
+    event.source.postMessage({command: "RESPONSE_VERSION", payload: version});
+    }
+    else console.log("@@@ unknown message")
+})
 
 self.addEventListener('install', (e) => {
     console.log(`@@@@ Service Worker install ${version}: handle install event`);
