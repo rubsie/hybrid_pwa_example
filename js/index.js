@@ -27,6 +27,10 @@ function showNextPokemon() {
     typeElem.innerText = pokemonToShow.type;
 }
 
+async function clearCache() {
+    const keys = await caches.keys();
+    keys.map(key => caches.delete(key))
+}
 
 // Register service worker to control making site work offline
 async function registerServiceWorker() {

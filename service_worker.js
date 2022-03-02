@@ -1,33 +1,33 @@
-const version = "1.5.6";
+const version = "1.6.2";
 const cacheName = `pokemon-store-${version}`;
 
 console.log(`@@@@ run service_worker.js ${version}`);
 
+async function initializeCache() {
+    const doesCacheExist = await caches.has(cacheName);
+    if (doesCacheExist) return;
+
+    console.log(`@@@@ -- Service Worker initializeCache ${version}`);
+    const cacheForThisVersion = await caches.open(cacheName);
+    return cacheForThisVersion.addAll([
+        '.',
+        'index.html',
+        'js/index.js',
+        'manifest.webmanifest',
+        'css/bootstrap.min.css',
+        'css/normalize.css',
+        'css/style.css',
+        'icon/113.png',
+        'images/113.png',
+        'images/202.png',
+        'images/289.png',
+        'images/376.png',
+        'images/862.png',
+    ]);
+}
+
 self.addEventListener('install', (e) => {
     console.log(`@@@@ Service Worker install ${version}: handle install event`);
-
-    async function initializeCache() {
-        console.log(`@@@@ -- Service Worker initializeCache ${version}`);
-        const cacheForThisVersion = await caches.open(cacheName);
-        return cacheForThisVersion.addAll([
-            '.',
-            'index.html',
-            'js/index.js',
-            'manifest.webmanifest',
-            'css/bootstrap.min.css',
-            'css/normalize.css',
-            'css/style.css',
-            'icon/113.png',
-            'images/113.png',
-            'images/202.png',
-            'images/289.png',
-            'images/376.png',
-            'images/862.png',
-
-
-        ]);
-    }
-
     e.waitUntil(initializeCache());
 });
 
@@ -53,6 +53,7 @@ self.addEventListener('fetch', (e) => {
     console.log(`@@@@ Service Worker ${version}: handle fetch event ${e.request.url}`);
 
     async function findResponseInCache() {
+        await initializeCache()
         const responseFromCache = await caches.match(e.request);
         return responseFromCache || fetch(e.request);
     }
