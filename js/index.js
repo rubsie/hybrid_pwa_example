@@ -53,9 +53,17 @@ async function registerServiceWorker() {
         serviceWorkerRegistration = await navigator.serviceWorker.register('service_worker.js');
         console.log('registration Service Worker done');
         await requestVersionFromServiceWorker();
+        //check if a new serviceworker is waiting
+        if (await serviceWorkerRegistration.waiting && await serviceWorkerRegistration.active) {
+            navigator.serviceWorker.controller.postMessage({command: "SKIP_WAITING"})
+        }
     } else {
         console.log("geen Service Worker mogelijk in deze browser");
     }
+
 }
 
 registerServiceWorker();
+
+
+
